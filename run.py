@@ -29,3 +29,4 @@ print('********************************************************')
 for stop in stops_ordered[:3]:
     print(f'\t{stop[STOP_NAME_ATTRIBUTE]}: {stop[BIKE_NUM_ATTRIBUTE]} bikes 🚲')
 print('********************************************************')
+print('Have a good ride!')
