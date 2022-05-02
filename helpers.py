@@ -1,6 +1,6 @@
 from math import pi, cos, asin, sqrt
 
-from constants import BIKE_NUM_ATTRIBUTE
+from constants import BIKE_NUM_ATTRIBUTE, MAX_ALLOWED_BIKES
 
 
 def fixed_point_distance(first: dict, second: dict) -> int:
@@ -19,9 +19,9 @@ def get_closest_stops(stops: list, ref_point: dict) -> list:
         Returns the stops ordered by distance to a reference point.
     """
 
-    # Filtering stops with bikes...
+    # Filtering stops with a reasonable amount of bikes
     stops_with_bikes = [stop for stop in stops if int(
-        stop[BIKE_NUM_ATTRIBUTE]) > 0]
+        stop[BIKE_NUM_ATTRIBUTE]) > 0 and int(stop[BIKE_NUM_ATTRIBUTE]) < MAX_ALLOWED_BIKES]
 
     # Ordering by distance to a fixed point...
     stops_ordered = sorted(
