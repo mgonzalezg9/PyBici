@@ -1,32 +1,28 @@
+import os
 from requests import get
+from dotenv import load_dotenv
 from constants import BASE_URL, FILTERS, BIKE_NUM_ATTRIBUTE, STOP_NAME_ATTRIBUTE
-from env import REF_POINT
-from helpers import fixed_point_distance
+from helpers import get_closest_stops
+
+load_dotenv()
+
+LATITUDE_COORD = os.getenv('LATITUDE_COORD')
+LONGITUDE_COORD = os.getenv('LONGITUDE_COORD')
 
 print('Requesting bike stops within its occupation...')
 res = get(BASE_URL, params=FILTERS)
+# Request fails
+assert res.status_code == 200, f'Request failed. MuyBici server responsed with code {res.status_code} ☹️'
 
-if res.status_code != 200:
-    print(
-        f'Request failed. MuyBici server responsed with code {res.status_code} ☹️')
-    exit(1)
-
-print('Filtering stops with bikes...')
-stops = res.json()['data']
-stops_with_bikes = [stop for stop in stops if int(
-    stop[BIKE_NUM_ATTRIBUTE]) > 0]
-
-print('Ordering by distance to a fixed point...')
-stops_ordered = sorted(stops_with_bikes,
-                       key=lambda stop: fixed_point_distance(
-                           stop,
-                           REF_POINT
-                       ))
+print('Obtained response. Now calculating the closest stops...')
+near_stops = get_closest_stops(
+    res.json()['data'], {'latitude': float(LATITUDE_COORD), 'longitude': float(LONGITUDE_COORD)})
 
 print()
 print('The closest three stops with bikes are:')
 print('********************************************************')
-for stop in stops_ordered[:3]:
-    print(f'\t{stop[STOP_NAME_ATTRIBUTE]}: {stop[BIKE_NUM_ATTRIBUTE]} bikes 🚲')
+for stop in near_stops[:3]:
+    print(
+        f'\t{stop[STOP_NAME_ATTRIBUTE]}: {stop[BIKE_NUM_ATTRIBUTE]} bikes 🚲')
 print('********************************************************')
 print('Have a good ride!')
