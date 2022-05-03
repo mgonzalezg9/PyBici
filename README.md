@@ -35,7 +35,6 @@ EMAIL_RECEIVER = YOUR_EMAIL
 EMAIL_PASSWORD = YOUR_PASSWORD
 EMAIL_STMP_SERVICE = YOUR_SMTP_SERVICE
 EMAIL_STMP_PORT = YOUR_SMTP_PORT
-
 ```
 
 Once done this, you can run the script with the following command:
@@ -65,5 +64,7 @@ In order to receive this mail at a certain hour you can create a cron job with t
 
 ```bash
 crontab -e
-mm hh * * * /usr/bin/python3 ~/PyBici/run.py
+m h * * * /usr/bin/python3 ~/PyBici/run.py 37.9909782371875 -1.1318207244033467
 ```
+
+This runs the script every day at a certain hour.
