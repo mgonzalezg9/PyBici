@@ -1,3 +1,4 @@
+import sys
 import os
 from requests import get
 from dotenv import load_dotenv
@@ -7,8 +8,8 @@ from services.muy_bici import get_closest_stops
 
 load_dotenv()
 
-LATITUDE_COORD = os.getenv('LATITUDE_COORD')
-LONGITUDE_COORD = os.getenv('LONGITUDE_COORD')
+LATITUDE_COORD = sys.argv[1]
+LONGITUDE_COORD = sys.argv[2]
 
 print('Requesting bike stops within its occupation...')
 res = get(BASE_URL, params=FILTERS)

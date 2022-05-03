@@ -19,7 +19,7 @@ PyBici is a Python script that provides the user information about the [MuyBici]
 
 - [Python](https://www.python.org/)
 - [Requests](https://docs.python-requests.org/en/latest/)
--
+- [SMTPLib](https://docs.python.org/3/library/smtplib.html)
 
 # Installation
 
@@ -30,19 +30,23 @@ To install the required libraries run `pip install -r requirements.txt`. Depende
 In order to use PyBici you will need to create a `.env` file with the following content:
 
 ```env
-LATITUDE_COORD = YOUR_LATITUDE_COORD
-LONGITUDE_COORD = YOUR_LONGITUDE_COORD
+EMAIL_SENDER = YOUR_EMAIL
+EMAIL_RECEIVER = YOUR_EMAIL
+EMAIL_PASSWORD = YOUR_PASSWORD
+EMAIL_STMP_SERVICE = YOUR_SMTP_SERVICE
+EMAIL_STMP_PORT = YOUR_SMTP_PORT
+
 ```
 
 Once done this, you can run the script with the following command:
 
 ```bash
-python3 run.py
+python3 run.py <latitude> <longitude>
 ```
 
 You will see an output like the following:
 
-```bash
+```
 Requesting bike stops within its occupation...
 Obtained response. Now calculating the closest stops...
 
