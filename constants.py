@@ -7,3 +7,5 @@ FILTERS = {
 BIKE_NUM_ATTRIBUTE = 'xocupados'
 STOP_NAME_ATTRIBUTE = 'descripcion'
 MAX_ALLOWED_BIKES = 4  # Stops with more than X bikes are suspicious to be not working
+
+EMAIL_SUBJECT = 'MuyBici: Your near stops'
