@@ -13,6 +13,7 @@ PyBici is a Python script that provides the user information about the [MuyBici]
 - [Technologies](#technologies)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Cron job](#cron-job)
 
 # Technologies
 
@@ -52,4 +53,13 @@ The closest three stops with bikes are:
         Santo Domingo: 2 bikes 🚲
 ********************************************************
 Have a good ride!
+```
+
+# Cron job
+
+In order to receive this mail at a certain hour you can create a cron job with the following command:
+
+```bash
+crontab -e
+mm hh * * * /usr/bin/python3 ~/PyBici/run.py
 ```
